@@ -12,7 +12,7 @@ const Statistics = ({ data }) => {
   // console.log(data)
   let newData = data.map((element, index) => {
     return (
-      <p key={index} >{element[0]}: {element[1]}</p>
+      <p key={index} >{element[0]} ({element[2]}): {element[1]}</p>
     )
   })
 
