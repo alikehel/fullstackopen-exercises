@@ -33,7 +33,11 @@ const Statistics = ({ data }) => {
   // POSITIVE
   let positive = (data[0][1] / all) * 100 || 0
 
-
+  if (all == 0) {
+    return (
+      <p>No Feedback Given</p>
+    )
+  }
 
   return (
     <>
