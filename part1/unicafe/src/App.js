@@ -8,7 +8,10 @@ const StatisticLine = ({ name, weight, value }) => {
   // console.log(name, weight, value)
   return (
     // <p>{name} {weight && `(${weight})`} = </p>
-    <p>{name} = {value}</p>
+    <>
+      <td>{name}</td>
+      <td>{value}</td>
+    </>
   )
 }
 
@@ -32,21 +35,19 @@ const Statistics = ({ data }) => {
   // POSITIVE
   let positive = (data.good[1] / all) * 100 || 0
 
-  if (all == 0) {
-    return (
-      <p>No Feedback Given</p>
-    )
-  }
+  if (all == 0) return (<p>No Feedback Given</p>)
 
   return (
-    <>
-      <StatisticLine name={'Good'} weight={data.good[0]} value={data.good[1]} />
-      <StatisticLine name={'Natural'} weight={data.natural[0]} value={data.natural[1]} />
-      <StatisticLine name={'Bad'} weight={data.bad[0]} value={data.bad[1]} />
-      <StatisticLine name={'All'} value={all} />
-      <StatisticLine name={'Average'} value={average} />
-      <StatisticLine name={'Positive'} value={positive} />
-    </>
+    <table>
+      <tbody>
+        <tr><StatisticLine name={'Good'} weight={data.good[0]} value={data.good[1]} /></tr>
+        <tr><StatisticLine name={'Natural'} weight={data.natural[0]} value={data.natural[1]} /></tr>
+        <tr><StatisticLine name={'Bad'} weight={data.bad[0]} value={data.bad[1]} /></tr>
+        <tr><StatisticLine name={'All'} value={all} /></tr>
+        <tr><StatisticLine name={'Average'} value={average} /></tr>
+        <tr><StatisticLine name={'Positive'} value={positive} /></tr>
+      </tbody>
+    </table>
   )
 }
 
