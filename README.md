@@ -30,7 +30,7 @@ Exercise                                        | Done?
 ------------------------------------------------|-------------------
 [course-information](/part1/course-information) | :heavy_check_mark:
 [unicafe](/part1/unicafe)                       | :heavy_check_mark:
-[anecdotes](anecdotes)                          |
+[anecdotes](/part1/anecdotes)                          | :heavy_check_mark:
 
 ## [Part 2 - Communicating with server](https://fullstackopen.com/en/part2)
 
