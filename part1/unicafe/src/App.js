@@ -4,34 +4,33 @@ const Header = ({ name }) => <h1>{name}</h1>
 
 const Button = ({ name, onClick }) => <button onClick={onClick}>{name}</button>
 
-// const Statistic = (props) => {
-
-// }
+const StatisticLine = ({ name, weight, value }) => {
+  // console.log(name, weight, value)
+  return (
+    // <p>{name} {weight && `(${weight})`} = </p>
+    <p>{name} = {value}</p>
+  )
+}
 
 const Statistics = ({ data }) => {
   // console.log(data)
-  let newData = data.map((element, index) => {
-    return (
-      <p key={index} >{element[0]} ({element[2]}): {element[1]}</p>
-    )
-  })
 
   // ALL
   let all = 0
-  data.forEach(element => {
-    all += element[1]
-  });
+  Object.entries(data).forEach(
+    ([key, value]) => all += value[1]
+  );
 
   // AVERAGE
   let allWeights = 0, average
-  data.forEach((element) => {
-    allWeights += element[1] * element[2]
+  Object.entries(data).forEach(([key, value]) => {
+    allWeights += value[0] * value[1]
     // console.log(element[2], allWeights)
   });
   average = allWeights / all || 0
 
   // POSITIVE
-  let positive = (data[0][1] / all) * 100 || 0
+  let positive = (data.good[1] / all) * 100 || 0
 
   if (all == 0) {
     return (
@@ -41,10 +40,12 @@ const Statistics = ({ data }) => {
 
   return (
     <>
-      {newData}
-      <p>All: {all}</p>
-      <p>Average: {average}</p>
-      <p>Positive: {positive} %</p>
+      <StatisticLine name={'Good'} weight={data.good[0]} value={data.good[1]} />
+      <StatisticLine name={'Natural'} weight={data.natural[0]} value={data.natural[1]} />
+      <StatisticLine name={'Bad'} weight={data.bad[0]} value={data.bad[1]} />
+      <StatisticLine name={'All'} value={all} />
+      <StatisticLine name={'Average'} value={average} />
+      <StatisticLine name={'Positive'} value={positive} />
     </>
   )
 }
@@ -61,7 +62,8 @@ const App = () => {
       <Button name='Natural (0)' onClick={() => setNatural(natural + 1)} />
       <Button name='Bad (-1)' onClick={() => setBad(bad + 1)} />
       <Header name='Statistics' />
-      <Statistics data={[['good', good, 1], ['natural', natural, 0], ['bad', bad, -1]]} />
+      {/* <Statistics data={[['good', good, 1], ['natural', natural, 0], ['bad', bad, -1]]} /> */}
+      <Statistics data={{ 'good': [1, good], 'natural': [0, natural], 'bad': [-1, bad] }} />
     </div>
   )
 }
