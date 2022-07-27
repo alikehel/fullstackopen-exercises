@@ -53,9 +53,9 @@ const App = () => {
   return (
     <div>
       <Header name='Give Feedback' />
-      <Button name='Good' onClick={() => setGood(good + 1)} />
-      <Button name='Natural' onClick={() => setNatural(natural + 1)} />
-      <Button name='Bad' onClick={() => setBad(bad + 1)} />
+      <Button name='Good (1)' onClick={() => setGood(good + 1)} />
+      <Button name='Natural (0)' onClick={() => setNatural(natural + 1)} />
+      <Button name='Bad (-1)' onClick={() => setBad(bad + 1)} />
       <Header name='Statistics' />
       <Statistics data={[['good', good, 1], ['natural', natural, 0], ['bad', bad, -1]]} />
     </div>
