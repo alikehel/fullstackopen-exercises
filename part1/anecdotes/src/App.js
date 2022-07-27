@@ -1,5 +1,11 @@
 import { useState } from 'react'
 
+const Button = (props) => {
+  return (
+    <button onClick={props.onClick}>{props.name}</button>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -12,11 +18,33 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
+  const [highestVote, setHighestVote] = useState(-1)
+
+  const updateNumber = () => {
+    const randomNum = (Math.random() * (anecdotes.length - 1)).toFixed()
+    setSelected(randomNum)
+    // console.log(randomNum)
+  }
+
+  const updateVotes = () => {
+    let arr = [...votes]
+    arr[selected] += 1
+    setVotes(arr)
+    setHighestVote(votes.indexOf(Math.max(...votes)))
+    // console.log(highestVote)
+    // console.log(anecdotes[votes.indexOf[Math.max(...votes)]])
+  }
 
   return (
-    <div>
-      {anecdotes[selected]}
-    </div>
+    <>
+      <h1>Anecdotes Of The Day</h1>
+      <div>{anecdotes[selected]} has {votes[selected]} votes</div>
+      <Button onClick={updateVotes} name={'Vote'} />
+      <Button onClick={updateNumber} name={'Next Anecdotes'} />
+      <h1>Anecdotes With Most VOTES</h1>
+      {highestVote == -1 ? <div>No Votes Yet</div> : <div>{anecdotes[highestVote]} has {votes[highestVote]} votes</div>}  
+    </>
   )
 }
 
