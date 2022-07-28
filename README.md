@@ -1,10 +1,8 @@
-# FullStackOpen Exercices
-
-This repository contains my solutions for the exercises from the Course Full Stack, held by the Department of Computer Science at the University of Helsinki, Finland.
-
-## [Full Stack Open 2022](https://fullstackopen.com/en/)
+# [Full Stack Open 2022](https://fullstackopen.com/en/) Exercices
 
 Learn React, Redux, Node.js, MongoDB, GraphQL, TypeScript, React Native, GitHub Actions and Docker in one go! This course will introduce you to modern JavaScript-based web development. The main focus is on building single page applications with ReactJS that use REST APIs built with Node.js.
+
+> This repository contains my solutions for the exercises from the Course Full Stack, held by the Department of Computer Science at the University of Helsinki, Finland.
 
 ## [PART 0 - Fundamentals of Web apps](https://fullstackopen.com/en/part0)
 
@@ -12,8 +10,12 @@ In this part, we will familiarize ourselves with the practicalities of taking th
 
 Section                                    | Done?
 -------------------------------------------|------
-[A - General Info](part0/a.md)             |
-[B - Fundamentals of Web apps](part0/b.md) |
+[A - General Info](https://fullstackopen.com/en/part0/general_info)             | :heavy_check_mark:
+[B - Fundamentals of Web apps](https://fullstackopen.com/en/part0/fundamentals_of_web_apps) | :heavy_check_mark:
+
+Exercise                                    | Done?
+-------------------------------------------|------
+[B - Fundamentals of Web apps](part0) | :heavy_check_mark:
 
 ## [PART 1 - Introduction to React](https://fullstackopen.com/en/part1)
 
@@ -30,7 +32,7 @@ Exercise                                        | Done?
 ------------------------------------------------|-------------------
 [course-information](/part1/course-information) | :heavy_check_mark:
 [unicafe](/part1/unicafe)                       | :heavy_check_mark:
-[anecdotes](/part1/anecdotes)                          | :heavy_check_mark:
+[anecdotes](/part1/anecdotes)                   | :heavy_check_mark:
 
 ## [Part 2 - Communicating with server](https://fullstackopen.com/en/part2)
 
