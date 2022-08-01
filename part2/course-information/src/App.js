@@ -32,10 +32,14 @@ const Part = (props) => {
 }
 
 const Total = ({ course }) => {
-  let count = 0;
-  course.parts.forEach(part => {
-    count += part.exercises
-  });
+  // let count = 0;
+  // course.parts.forEach(part => {
+  //   count += part.exercises
+  // });
+  let count = course.parts.reduce((total, curr) => {
+    total += curr.exercises
+    return total
+  }, 0)
   return (
     <p>Number of exercises {count}</p>
   )
