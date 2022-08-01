@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import Search from "./components/Search";
+import AddNumber from "./components/AddNumber";
+import Numbers from "./components/Numbers";
+
 
 const App = () => {
     const [persons, setPersons] = useState([
@@ -46,40 +50,22 @@ const App = () => {
             setPersons([...persons, newPerson])
             setNewName('')
             setNewNumber('')
+            setSearching(false)
         }
     };
 
     return (
         <div>
             <h1>Phonebook</h1>
-            <h2>Search</h2>
-            <input placeholder='Search Name' onChange={handleSearchChange} />
-            <h2>Add Number</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    name: <input value={newName} onChange={handleNameChange} />
-                </div>
-                <div>
-                    number: <input value={newNumber} onChange={handleNumberChange} />
-                </div>
-                <div>
-                    <button type="submit">add</button>
-                </div>
-            </form>
-            <h2>Numbers</h2>
-            <div>
-                {
-                    !searching
-                        ?
-                        persons.map((person) => {
-                            return <p key={person.name}>{person.name} | {person.number}</p>;
-                        })
-                        :
-                        searchedPersons.map((person) => {
-                            return <p key={person.name}>{person.name} | {person.number}</p>;
-                        })
-                }
-            </div>
+            <Search handleSearchChange={handleSearchChange} />
+            <AddNumber
+                handleSubmit={handleSubmit}
+                newName={newName}
+                handleNameChange={handleNameChange}
+                newNumber={newNumber}
+                handleNumberChange={handleNumberChange}
+            />
+            <Numbers searching={searching} persons={persons} searchedPersons={searchedPersons} />
         </div>
     );
 };
