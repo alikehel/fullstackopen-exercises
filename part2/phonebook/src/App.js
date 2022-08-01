@@ -1,18 +1,24 @@
 import { useState } from 'react';
 
 const App = () => {
-    const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]);
+    const [persons, setPersons] = useState([{ name: 'Arto Hellas', number: '0123456789' }]);
     const [newName, setNewName] = useState('');
+    const [newNumber, setNewNumber] = useState('');
 
-    const handleChange = (e) => {
+    const handleNameChange = (e) => {
         setNewName(e.target.value);
+    };
+
+    const handleNumberChange = (e) => {
+        setNewNumber(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const newPerson = {
-            name: newName
+            name: newName,
+            number: newNumber
         }
 
         const personExists = persons.some((person) => {
@@ -24,6 +30,7 @@ const App = () => {
         } else {
             setPersons([...persons, newPerson])
             setNewName('')
+            setNewNumber('')
         }
     };
 
@@ -32,7 +39,10 @@ const App = () => {
             <h2>Phonebook</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    name: <input value={newName} onChange={handleChange} />
+                    name: <input value={newName} onChange={handleNameChange} />
+                </div>
+                <div>
+                    number: <input value={newNumber} onChange={handleNumberChange} />
                 </div>
                 <div>
                     <button type="submit">add</button>
@@ -42,7 +52,7 @@ const App = () => {
             <div>
                 {
                     persons.map((person) => {
-                        return <p key={person.name}>{person.name}</p>;
+                        return <p key={person.name}>{person.name} - {person.number}</p>;
                     })
                 }
             </div>
