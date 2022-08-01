@@ -4,17 +4,27 @@ const App = () => {
     const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]);
     const [newName, setNewName] = useState('');
 
+    const handleChange = (e) => {
+        setNewName(e.target.value);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
         const newPerson = {
             name: newName
         }
-        setPersons([...persons, newPerson])
-        setNewName('')
-    };
 
-    const handleChange = (e) => {
-        setNewName(e.target.value);
+        const personExists = persons.some((person) => {
+            return newPerson.name === person.name
+        })
+
+        if (personExists) {
+            alert(`${newName} already exists`)
+        } else {
+            setPersons([...persons, newPerson])
+            setNewName('')
+        }
     };
 
     return (
