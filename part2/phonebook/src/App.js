@@ -1,7 +1,14 @@
 import { useState } from 'react';
 
 const App = () => {
-    const [persons, setPersons] = useState([{ name: 'Arto Hellas', number: '0123456789' }]);
+    const [persons, setPersons] = useState([
+        { name: 'Arto Hellas', number: '040-123456', id: 1 },
+        { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+        { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+        { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+    ]);
+    const [searchedPersons, setSearchedPersons] = useState([]);
+    const [searching, setSearching] = useState(false);
     const [newName, setNewName] = useState('');
     const [newNumber, setNewNumber] = useState('');
 
@@ -13,12 +20,20 @@ const App = () => {
         setNewNumber(e.target.value);
     };
 
+    const handleSearchChange = (e) => {
+        setSearchedPersons(persons.filter((person) => {
+            return person.name.toLowerCase().includes(e.target.value.toLowerCase())
+        }))
+        setSearching(true)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const newPerson = {
             name: newName,
-            number: newNumber
+            number: newNumber,
+            id: persons.length + 1
         }
 
         const personExists = persons.some((person) => {
@@ -36,7 +51,10 @@ const App = () => {
 
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h1>Phonebook</h1>
+            <h2>Search</h2>
+            <input placeholder='Search Name' onChange={handleSearchChange} />
+            <h2>Add Number</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     name: <input value={newName} onChange={handleNameChange} />
@@ -51,9 +69,15 @@ const App = () => {
             <h2>Numbers</h2>
             <div>
                 {
-                    persons.map((person) => {
-                        return <p key={person.name}>{person.name} - {person.number}</p>;
-                    })
+                    !searching
+                        ?
+                        persons.map((person) => {
+                            return <p key={person.name}>{person.name} | {person.number}</p>;
+                        })
+                        :
+                        searchedPersons.map((person) => {
+                            return <p key={person.name}>{person.name} | {person.number}</p>;
+                        })
                 }
             </div>
         </div>
