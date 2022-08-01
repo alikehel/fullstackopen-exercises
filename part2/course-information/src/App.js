@@ -15,12 +15,12 @@ const Header = (props) => {
 }
 
 const Content = ({ course }) => {
-  console.log(course)
+  // console.log(course)
   return (
     <div>
-      <Part name={course.parts[0].name} count={course.parts[0].exercises} />
-      <Part name={course.parts[1].name} count={course.parts[1].exercises} />
-      <Part name={course.parts[2].name} count={course.parts[2].exercises} />
+      {course.parts.map((part) => {
+        return <Part key={part.name} name={part.name} count={part.exercises} />
+      })}
     </div>
   )
 }
@@ -64,7 +64,11 @@ const App = () => {
     ]
   }
 
-  return <Course course={course} />
+  return (
+    <>
+      <Course course={course} />
+    </>
+  )
 }
 
 export default App
