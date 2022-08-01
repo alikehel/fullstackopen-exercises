@@ -3,7 +3,7 @@ const Course = ({ course }) => {
     <>
       <Header title={course.name} />
       <Content course={course} />
-      {/* <Total /> */}
+      <Total course={course} />
     </>
   )
 }
@@ -31,9 +31,9 @@ const Part = (props) => {
   )
 }
 
-const Total = (props) => {
+const Total = ({ course }) => {
   let count = 0;
-  props.parts.forEach(part => {
+  course.parts.forEach(part => {
     count += part.exercises
   });
   return (
