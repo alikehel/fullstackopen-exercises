@@ -25,3 +25,5 @@ yarn-error.log*
 .prettierrc
 /.vscode
 .editorconfig-
+.env*.local
+.env
