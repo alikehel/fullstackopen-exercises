@@ -10,11 +10,11 @@ function App() {
     const searchValue = e.target.value
     setSearch(searchValue)
     console.log(searchValue, search)
-    const filteredCountries = countries.filter((country) => {
-      return country.name.common.toLowerCase().includes(search.toLowerCase())
-    })
-    setSearchedCountries(filteredCountries)
-    console.log(filteredCountries)
+    // const filteredCountries = countries.filter((country) => {
+    //   return country.name.common.toLowerCase().includes(search.toLowerCase())
+    // })
+    // setSearchedCountries(filteredCountries)
+    // console.log(filteredCountries)
   }
 
   useEffect(() => {
@@ -26,6 +26,14 @@ function App() {
     }
     fetchData()
   }, [])
+
+  useEffect(() => {
+    const filteredCountries = countries.filter((country) => {
+      return country.name.common.toLowerCase().includes(search.toLowerCase())
+    })
+    setSearchedCountries(filteredCountries)
+    console.log(filteredCountries)
+  }, [search])
 
   return (
     <>
